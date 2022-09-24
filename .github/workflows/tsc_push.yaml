@@ -13,4 +13,4 @@ jobs:
           user-name: "[Bot]Anjack"
           user-email: "gary.reif@gmail.com"
           message: "Automatically built unbuilt typescript"
-          directories: ./, src/
+          directories: ./
