@@ -55,7 +55,7 @@ export class Player extends Entity {
 		
 		vec3.scale(v, forward, 0.05);
 		
-		// if(this.onGround === true) {
+		if(this.onGround === true) {
 			if(input.forward) {
 				vec3.add(this.velocity, this.velocity, v);
 			} else if(input.back) {
@@ -68,7 +68,7 @@ export class Player extends Entity {
 			} else if(input.right) { 
 				vec3.add(this.velocity, this.velocity, v);
 			}
-		// }
+		}
 		
 		if(input.jump) {
 			if(this.velocity[1] == 0) {
@@ -76,9 +76,13 @@ export class Player extends Entity {
 			}
 		}
 		
-		// Apply friction.
-		this.velocity[0] *= 0.9;
-		this.velocity[2] *= 0.9;
+		// #TODO: We should genericize this to support friction per environment (air, water, etc.)
+		// For now, lets only apply friction if we're "on the ground"
+		if (this.onGround) {
+			// Apply friction.
+			this.velocity[0] *= 0.9;
+			this.velocity[2] *= 0.9;
+		}
 		
 		// Apply gravity.
 		vec3.add(this.velocity, this.velocity, game.gravity);
