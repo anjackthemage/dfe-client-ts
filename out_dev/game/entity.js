@@ -38,29 +38,33 @@ export class Player extends Entity {
             this.position[1] -= 0.1;
         }
         vec3.scale(v, forward, 0.05);
-        // if(this.onGround === true) {
-        if (input.forward) {
-            vec3.add(this.velocity, this.velocity, v);
+        if (this.onGround === true) {
+            if (input.forward) {
+                vec3.add(this.velocity, this.velocity, v);
+            }
+            else if (input.back) {
+                vec3.sub(this.velocity, this.velocity, v);
+            }
+            vec3.scale(v, right, 0.05);
+            if (input.left) {
+                vec3.sub(this.velocity, this.velocity, v);
+            }
+            else if (input.right) {
+                vec3.add(this.velocity, this.velocity, v);
+            }
         }
-        else if (input.back) {
-            vec3.sub(this.velocity, this.velocity, v);
-        }
-        vec3.scale(v, right, 0.05);
-        if (input.left) {
-            vec3.sub(this.velocity, this.velocity, v);
-        }
-        else if (input.right) {
-            vec3.add(this.velocity, this.velocity, v);
-        }
-        // }
         if (input.jump) {
             if (this.velocity[1] == 0) {
                 this.velocity[1] = 0.25;
             }
         }
-        // Apply friction.
-        this.velocity[0] *= 0.9;
-        this.velocity[2] *= 0.9;
+        // #TODO: We should genericize this to support friction per environment (air, water, etc.)
+        // For now, lets only apply friction if we're "on the ground"
+        if (this.onGround) {
+            // Apply friction.
+            this.velocity[0] *= 0.9;
+            this.velocity[2] *= 0.9;
+        }
         // Apply gravity.
         vec3.add(this.velocity, this.velocity, game.gravity);
         //physics.rollOnTerrain(this, terrain_shader.mesh);
