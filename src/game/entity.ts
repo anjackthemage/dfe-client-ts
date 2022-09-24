@@ -55,7 +55,7 @@ export class Player extends Entity {
 		
 		vec3.scale(v, forward, 0.05);
 		
-		if(this.onGround === true) {
+		// if(this.onGround === true) {
 			if(input.forward) {
 				vec3.add(this.velocity, this.velocity, v);
 			} else if(input.back) {
@@ -68,7 +68,7 @@ export class Player extends Entity {
 			} else if(input.right) { 
 				vec3.add(this.velocity, this.velocity, v);
 			}
-		}
+		// }
 		
 		if(input.jump) {
 			if(this.velocity[1] == 0) {
