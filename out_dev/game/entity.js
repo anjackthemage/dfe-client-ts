@@ -59,11 +59,16 @@ export class Player extends Entity {
             }
         }
         // #TODO: We should genericize this to support friction per environment (air, water, etc.)
+        // #TODO: This is framerate dependent. We should be factoring in the delta time here.
         // For now, lets only apply friction if we're "on the ground"
         if (this.onGround) {
             // Apply friction.
             this.velocity[0] *= 0.9;
             this.velocity[2] *= 0.9;
+        }
+        else {
+            this.velocity[0] *= 0.99;
+            this.velocity[0] *= 0.99;
         }
         // Apply gravity.
         vec3.add(this.velocity, this.velocity, game.gravity);
