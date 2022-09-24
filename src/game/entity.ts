@@ -84,8 +84,8 @@ export class Player extends Entity {
 			this.velocity[0] *= 0.9;
 			this.velocity[2] *= 0.9;
 		} else {
-			this.velocity[0] *= 0.99;
-			this.velocity[2] *= 0.99;
+			this.velocity[0] *= 0.999;
+			this.velocity[2] *= 0.999;
 		}
 		
 		// Apply gravity.
