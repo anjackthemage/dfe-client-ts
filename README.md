@@ -9,4 +9,4 @@
  Alternatively you can just run `npx tsc` to compile without installing the *TypeScript* module.
 
  ## Run
-To run the client, you just need to host the files. We've included `serve.cmd` and `serve.sh` which run a simple python HTTP server, for convenience.
+ To run the client, you just need to host the files. We've included `serve.cmd` and `serve.sh` which run a simple python HTTP server, for convenience.
