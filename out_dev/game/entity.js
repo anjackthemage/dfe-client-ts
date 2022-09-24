@@ -68,7 +68,7 @@ export class Player extends Entity {
         }
         else {
             this.velocity[0] *= 0.99;
-            this.velocity[0] *= 0.99;
+            this.velocity[2] *= 0.99;
         }
         // Apply gravity.
         vec3.add(this.velocity, this.velocity, game.gravity);
